@@ -21,7 +21,7 @@ node {
     slackSend channel: 'project-dcs', message: "Started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'slack'
 //	
     stage('Clone source') {
-        git url: 'https://github.com/srisritharan/WebApp.git'
+        git url: 'https://github.com/srisritharan/webapp-1.git'
     }
 //    
     stage('SonarQube Analysis') {
@@ -56,9 +56,9 @@ node {
 	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\functionaltest\\target\\surefire-reports', reportFiles: 'index.html', reportName: 'UI Test Report', reportTitles: ''])
     }
 //    
-//    stage('Performance Test') {
-//	blazeMeterTest credentialsId: 'BlazeMeter', testId: '7883189.taurus', workspaceId: '470553'
-//    }
+    stage('Performance Test') {
+	blazeMeterTest credentialsId: 'BlazeMeter', testId: '7883189.taurus', workspaceId: '470553'
+    }
 //
     stage('Deploy to Prod') {
 	deploy adapters: [tomcat7(credentialsId: 'AWStomcat', path: '', url: 'http://3.14.10.76:8080/')], contextPath: '/ProdWebapp', war: '**/*.war'
