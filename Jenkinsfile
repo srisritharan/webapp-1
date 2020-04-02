@@ -16,7 +16,7 @@ node {
     
         rtMaven.deployer releaseRepo:'libs-release-local', snapshotRepo:'libs-snapshot-local', server: server
         rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
-	rtMaven.deployer.deployArtifacts = false // Disable artifacts deployment during Maven run
+	//rtMaven.deployer.deployArtifacts = false // Disable artifacts deployment during Maven run
 //    
     slackSend channel: 'project-dcs', message: "Started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'slack'
 //	
